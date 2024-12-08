@@ -49,7 +49,6 @@ function x_filtre = kalmanNonStationnaire(x, n, L, R)
         C=B';
         D=0;
         
-        R=10;
         Q=eye(n);
 
         Pp=0.001*eye(n);
