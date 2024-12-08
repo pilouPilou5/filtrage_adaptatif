@@ -5,7 +5,8 @@ Ts = 1/Fs;
 t = 0:Ts:(length(son)-1)*Ts;
 figure(1)
 son = son(200:end);
-plot(son)
+plot(t(1:length(son)), son)
+title("signal avant filtrage")
 
 n = 10;
 
@@ -31,6 +32,7 @@ for i=1:length(son)/N-1
 end
 figure(2)
 plot(t(1:length(son_filtre)), son_filtre)
+title("signal après filtrage")
 % sound(son)
 % pause(3)
 sound(son_filtre)
