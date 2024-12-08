@@ -21,28 +21,34 @@ plot(f, fftshift(abs(fft(rieurs))))
 title("fft rieurs")
 
 %% 1.3.2
-n = 15;
-
-[Rxx, lags] = xcorr(rieurs, 'biased');
-Rxx = Rxx(N:N+n);
-Rxx = toeplitz(Rxx);
 
 Ryx = xcorr(chants, rieurs,'biased');
 
 figure(2)
 plot(lags, Ryx)
+title("intercorrélation avant filtrage")
 
-Ryx = Ryx(N:N+n);
-
-theta = Rxx\Ryx;
-
-rieurs_filtre = filter(theta, 1, rieurs);
+rieurs_filtre = filtrageWiener(rieurs, chants, 15);
 
 [Ryx_filtre,lags]=xcorr(chants,rieurs_filtre,'biased');
 
 figure(3)
 plot(lags, Ryx_filtre)
+title("intercorrélation après filtrage")
 
-sound(chants-rieurs_filtre)
+%sound(chants-rieurs_filtre)
 
-%% 1.3.3
+function x_filtre = filtrageWiener(x, y, n)
+    N = length(x);
+
+    [Rxx, ~] = xcorr(x, 'biased');
+    Rxx = Rxx(N:N+n);
+    Rxx = toeplitz(Rxx);
+
+    Ryx = xcorr(y, x,'biased');
+    Ryx = Ryx(N:N+n);
+
+    theta = Rxx\Ryx;
+
+    x_filtre = filter(theta, 1, x);
+end
