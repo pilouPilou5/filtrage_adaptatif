@@ -6,7 +6,6 @@ N = length(electro);
 electro = electro';
 electro_mere = electro_mere(1:N)';
 t=0:Ts:N*Ts-Ts;
-
 figure(1)
 subplot(211)
 plot(t,electro)
@@ -41,7 +40,7 @@ title("réponse fréquentielle filtre")
 Ha = tf(theta', 1, Ts, 'variable', 'z^-1');
 figure(6)
 impulse(Ha)
-title("réponse impulsionnelle filtre")
+title("réponse impulsionnelle filtr")
 
 function x_filtre = filtrageWiener(x, y, n)
     N = length(x);

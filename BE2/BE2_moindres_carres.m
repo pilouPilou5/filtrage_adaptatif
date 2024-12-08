@@ -58,3 +58,16 @@ hold on
 plot(electro-electro_mere_filtre)
 hold off
 legend('electro','electro\_filtre')
+
+function x_filtre = filtrageMoindresCarres(x, y, n, P0)
+    phi = [zeros(n-1,1); x];
+
+    x_filtre = zeros(size(x));
+    theta = zeros([n+1 1]);
+    Pt = P0*eye(n+1);
+    for i=1:K-1
+        Kt = Pt*phi(i+n:-1:i)/(phi(i+n:-1:i)'*Pt*phi(i+n:-1:i)+lambda);
+        Pt = (1/lambda)*(Pt-Kt*phi(i+n:-1:i)'*Pt);
+        theta = theta+Kt*(x(i)-phi(i+n:-1:i)'*theta);
+        x_filtre(i) = theta'*phi(i+n:-1:i);
+    end

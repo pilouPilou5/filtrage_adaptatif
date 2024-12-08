@@ -27,6 +27,7 @@ for j=1:10
     hold on
 end
 hold off
+title("test convergence theta")
 
 rieurs_filtre = zeros([N 1]);
 
