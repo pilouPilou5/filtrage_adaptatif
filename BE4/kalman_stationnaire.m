@@ -6,6 +6,7 @@ figure(1)
 son = son(200:end);
 t = 0:Ts:(length(son)-1)*Ts;
 plot(t, son)
+title("signal avant filtrage")
 
 n = 10;
 L = 1000;
@@ -33,6 +34,7 @@ end
 
 figure(2)
 plot(t(1:length(son_filtre)), son_filtre);
+title("signal après filtrage")
 
 sound(son)
 pause(3)
