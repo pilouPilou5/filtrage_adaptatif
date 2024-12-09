@@ -29,9 +29,9 @@ figure(1)
 plot(thetas(1,:))
 title("visualisation convergence theta")
 
-%rieurs_filtre = gradientDeterministe(rieurs, chants, 15, 10, 100);
+rieurs_filtre = gradientDeterministe(rieurs, chants, 15, 10, 100);
 
-rieurs_filtre = gradientDeterministeTempReel(rieurs, chants, 15, 10);
+%rieurs_filtre = gradientDeterministeTempReel(rieurs, chants, 15, 10);
 
 sound(chants-rieurs_filtre)
 

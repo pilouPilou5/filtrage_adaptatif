@@ -39,10 +39,9 @@ Pt = 100000*eye(n);
 lambda = 0.99;
 for i=1:K-2
     r = [sin(2*pi*f0*t(i)); cos(2*pi*f0*t(i)); 1];
-    H = [A1*cos(r(1)) -A1*sin(r(1)) B1; A2*cos(r(2)) -A2*sin(r(2)) B2]
-    %z_filtre(i,1) = phi(i+n-1:-1:i,1)'*theta(:,1);
-    %z_filtre(i,2) = phi(i+n:-1:i+1,2)'*theta(:,2);
-    z_filtre(i,:) = r'*H;
+    H = [A1*cos(r(1)); -A1*sin(r(1)); B1; A2*cos(r(2)); -A2*sin(r(2)); B2];
+    phi = kron(r, eye(2));
+    z_filtre(i,:) = phi.'*H;
     
 end
 
